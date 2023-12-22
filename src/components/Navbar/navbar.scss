@@ -1,0 +1,105 @@
+.nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999;
+	// make a linear gradient from top to bottom
+	background: linear-gradient(180deg, #15161c 0%, transparent 100%);
+	.navContainer {
+		padding: 20px 75px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.logo {
+			img {
+				width: 100px;
+				height: auto;
+			}
+		}
+		.userInfo {
+			display: flex;
+			align-items: center;
+			.userImage {
+				img {
+					width: 50px;
+					height: 50px;
+					border-radius: 50%;
+					margin-left: 10px;
+				}
+			}
+			.userDropdown {
+				.userDropdownIcon {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 1.5rem;
+					cursor: pointer;
+					transition: transform 0.2s ease-in-out;
+				}
+				&:hover .userDropdownContent {
+					display: block;
+				}
+				&:hover .userDropdownIcon {
+					transform: rotate(180deg);
+				}
+				.userDropdownContent {
+					display: none;
+					position: absolute;
+					top: 60px;
+					right: 20px;
+					background-color: #15161c;
+					width: 200px;
+					border-radius: 5px;
+					padding: 0 20px;
+					.userDropdownInfo {
+						padding-top: 30px;
+						img {
+							width: 75px;
+							height: 75px;
+							border-radius: 50%;
+						}
+
+						h4 {
+							margin: 0;
+							margin-top: 10px;
+							color: #ffffffae;
+						}
+					}
+
+					ul {
+						margin-top: 20px;
+						li {
+							list-style-type: none;
+							border-top: 1px solid #ffffff28;
+							button {
+								display: flex;
+								align-items: center;
+								background-color: transparent;
+								border: none;
+								color: white;
+								cursor: pointer;
+								padding: 20px 0;
+								width: 100%;
+								text-align: left;
+								&:hover {
+									background-color: #292929;
+									// make the change ease in and out
+									transition: background-color 0.2s
+										ease-in-out;
+								}
+								.dropdownIcon {
+									font-size: 1.5rem;
+									margin-right: 10px;
+								}
+							}
+							.logoutButtonNav {
+								color: #f84550;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

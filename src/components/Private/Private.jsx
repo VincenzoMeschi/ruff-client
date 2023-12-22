@@ -22,10 +22,10 @@ const Private = () => {
 	}
 
 	return auth ? (
-		<>
+		<div className="container">
 			<Navbar />
 			<Outlet />
-		</>
+		</div>
 	) : (
 		<Navigate to="/login" />
 	);

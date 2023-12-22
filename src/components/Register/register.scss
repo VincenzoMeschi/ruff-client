@@ -4,11 +4,23 @@
 
 	display: flex;
 	flex-direction: column;
-	align-items: start;
+	align-items: flex-start;
+	.registerBoxHeader {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		height: 30%;
+		width: 100%;
+		h1 {
+			font-size: 2em;
+			margin-bottom: 0.5em;
+		}
+	}
 	.registerBoxBody {
 		display: flex;
 		flex-direction: column;
-		align-items: start;
+		align-items: flex-start;
 		justify-content: space-between;
 		height: 100%;
 		width: 100%;
