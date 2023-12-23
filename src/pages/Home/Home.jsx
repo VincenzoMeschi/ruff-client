@@ -8,19 +8,27 @@ import axios from "axios";
 
 const Home = () => {
 	const [lists, setLists] = useState([]);
+	const [movies, setMovies] = useState([]);
 	const [fetching, setFetching] = useState(true);
 
 	useEffect(() => {
 		const getLists = async () => {
 			const baseURL = "http://localhost:8080/api";
 			try {
-				setFetching(true);
-				const res = await axios.get(baseURL + "/lists", {
+				const listres = await axios.get(baseURL + "/lists", {
 					headers: {
 						authorization: localStorage.getItem("authorization"),
 					},
 				});
-				setLists(res.data);
+				const movieres = await axios.get(baseURL + "/movies", {
+					headers: {
+						authorization: localStorage.getItem("authorization"),
+					},
+				});
+				setMovies(movieres.data);
+				setLists(listres.data);
+				console.log("Home.jsx: lists: ", listres.data);
+				console.log("Home.jsx: movies: ", movieres.data);
 				setFetching(false);
 			} catch (err) {
 				setFetching(false);
@@ -39,7 +47,12 @@ const Home = () => {
 			<Navbar />
 			<Hero />
 			{lists.map((list, index) => (
-				<List key={index} listIndex={index + "a"} list={list} />
+				<List
+					key={index}
+					listIndex={index + "a"}
+					list={list}
+					movies={movies}
+				/>
 			))}
 		</div>
 	);

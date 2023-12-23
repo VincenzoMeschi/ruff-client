@@ -28,7 +28,6 @@ export default function List(props) {
 				-375 + distance
 			}px)`;
 		}
-		console.log(props.list);
 	};
 	return (
 		<div className="list">
@@ -45,6 +44,7 @@ export default function List(props) {
 							index={index}
 							listIndex={props.listIndex}
 							movieId={item}
+							movies={props.movies}
 						/>
 					))}
 				</div>

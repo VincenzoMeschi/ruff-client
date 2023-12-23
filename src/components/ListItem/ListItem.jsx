@@ -6,14 +6,11 @@ import {
 	ThumbDownOutlined,
 } from "@mui/icons-material";
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
-import Loading from "../../pages/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 
-export default function ListItem({ index, listIndex, movieId }) {
+export default function ListItem({ index, listIndex, movieId, movies }) {
 	const [hoverTimeout, setHoverTimeout] = useState(null);
 	const [movie, setMovie] = useState(null);
-	const [fetching, setFetching] = useState(true);
 	const [title, setTitle] = useState("Loading...");
 	const [desc, setDesc] = useState("Loading...");
 	const [img, setImg] = useState("Loading...");
@@ -22,30 +19,15 @@ export default function ListItem({ index, listIndex, movieId }) {
 	const [time, setTime] = useState("Loading...");
 
 	const videoRef = useRef();
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	useEffect(() => {
-		const getMovie = async () => {
-			const baseURL = "http://localhost:8080/api";
-			try {
-				setFetching(true);
-				const res = await axios.get(
-					baseURL + "/movies/find/" + movieId,
-					{
-						headers: {
-							authorization:
-								localStorage.getItem("authorization"),
-						},
-					}
-				);
-				setMovie(res.data);
-			} catch (err) {
-				setFetching(false);
-				console.log(err);
-			}
-		};
-		getMovie();
-	}, [movieId]);
+		const selectedmovie = movies.filter((movie) => {
+			return movie._id === movieId;
+		});
+		setMovie(selectedmovie[0]);
+		console.log("ListItem.jsx: selectedmovie: ", selectedmovie[0]);
+	}, [movieId, movies]);
 
 	useEffect(() => {
 		if (movie) {
@@ -55,7 +37,6 @@ export default function ListItem({ index, listIndex, movieId }) {
 			setVideo(movie.video);
 			setYear(movie.year);
 			setTime(movie.limit);
-			setFetching(false);
 		}
 	}, [movie]);
 
@@ -80,9 +61,9 @@ export default function ListItem({ index, listIndex, movieId }) {
 		videoRef.current.currentTime = 0;
 	};
 
-  const handleVideoClick = () => {
-    navigate(`/watch/${movie._id}`);
-  };
+	const handleVideoClick = () => {
+		navigate(`/watch/${movie._id}`);
+	};
 
 	useEffect(() => {
 		return () => {
@@ -91,10 +72,6 @@ export default function ListItem({ index, listIndex, movieId }) {
 			}
 		};
 	}, [hoverTimeout]);
-
-	if (fetching) {
-		return <Loading />;
-	}
 
 	return (
 		<div

@@ -5,7 +5,6 @@ import {
 	useParams,
 } from "react-router-dom";
 import Private from "./components/Private/Private";
-import { useState } from "react";
 
 import "./App.scss";
 import Auth from "./pages/Auth/Auth";
