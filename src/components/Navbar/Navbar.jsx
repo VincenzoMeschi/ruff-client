@@ -12,6 +12,7 @@ const logo =
 
 const Navbar = () => {
 	const [user, setUser] = useState(null);
+	const [scrolled, setScrolled] = useState(false);
 
 	useEffect(() => {
 		const getUser = async () => {
@@ -22,12 +23,25 @@ const Navbar = () => {
 		getUser();
 	}, []);
 
+	const handleScroll = () => {
+		const offset = window.scrollY;
+		setScrolled(offset > 0); // Set true if scrolled down, false if at the top
+	};
+
+	useEffect(() => {
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+
 	if (user === null) {
 		return <Loading />;
 	}
 
 	return (
-		<div className="nav">
+		<div className={`nav ${scrolled ? `scrolled` : ``}`}>
 			<div className="navContainer">
 				<div className="logo">
 					<img src={logo} alt="" />

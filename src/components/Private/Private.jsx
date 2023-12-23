@@ -1,5 +1,4 @@
 import { Navigate, Outlet } from "react-router-dom";
-import Navbar from "../Navbar/Navbar";
 import "./private.scss";
 import Loading from "../../pages/Loading/Loading";
 import { useEffect, useState } from "react";
@@ -23,7 +22,6 @@ const Private = () => {
 
 	return auth ? (
 		<div className="container">
-			<Navbar />
 			<Outlet />
 		</div>
 	) : (

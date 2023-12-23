@@ -6,6 +6,11 @@
 	z-index: 999;
 	// make a linear gradient from top to bottom
 	background: linear-gradient(180deg, #15161c 0%, transparent 100%);
+	transition: background 0.3s ease-in-out;
+	&.scrolled {
+		background: var(--main-color);
+		transition: background 0.3s ease-in-out;
+	}
 	.navContainer {
 		padding: 20px 75px;
 		display: flex;

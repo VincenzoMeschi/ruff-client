@@ -1,0 +1,122 @@
+.listItemWrapper {
+	width: 20rem; // Width of the unhovered listItem
+	height: 10rem; // Height of the unhovered listItem
+	position: relative;
+	margin-right: 1rem;
+	overflow: visible;
+	cursor: pointer;
+	.listItem {
+		width: 20rem;
+		height: 10rem;
+		background-color: var(--main-color); /* Main color variable */
+		margin-right: 1rem;
+		overflow: hidden;
+		cursor: pointer;
+		color: white;
+		position: relative;
+		transition: all 0.3s ease; /* Smooth transition for all changes */
+
+		.itemTitleOverlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgb(22, 22, 22, 0.5);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-weight: 700;
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+		}
+
+		video {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0; /* Initially hidden */
+			transition: opacity 0.3s ease; /* Transition for revealing video */
+		}
+
+		/* Styles for post-hover state */
+		&.postHover {
+			width: 25rem;
+			height: 21rem;
+			position: absolute; /* Needed for proper positioning */
+			top: -7rem; /* Adjust as needed */
+			left: -5rem; /* Adjust as needed */
+			box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.07);
+			border-radius: 5px;
+			padding: 0 20px;
+			z-index: 99;
+
+			.itemTitleOverlay {
+				display: none; /* Hide the overlay */
+			}
+
+			img {
+				opacity: 0.5; /* Dimming the image */
+				height: 140px;
+			}
+
+			video {
+				opacity: 1; /* Show the video */
+			}
+
+			.itemInfo {
+				display: flex;
+				flex-direction: column;
+				padding: 5px;
+				opacity: 1; /* Make item info visible */
+				transition: opacity 0.3s ease;
+				margin-top: 3.5rem;
+
+				.icons {
+					display: flex;
+					margin-bottom: 10px;
+
+					.icon {
+						border: 2px solid white;
+						padding: 5px;
+						border-radius: 50%;
+						margin-right: 10px;
+						font-size: 16px;
+					}
+				}
+
+				.itemInfoTop {
+					display: flex;
+					align-items: center;
+					margin-bottom: 10px;
+					font-size: 14px;
+					font-weight: 600;
+					color: gray;
+
+					.limit {
+						border: 1px solid gray;
+						padding: 1px 3px;
+						margin: 0 10px;
+					}
+				}
+
+				.desc {
+					font-size: 13px;
+					margin-bottom: 10px;
+				}
+
+				.genre {
+					font-size: 14px;
+					color: lightgray;
+				}
+			}
+		}
+	}
+}
