@@ -27,8 +27,6 @@ const Home = () => {
 				});
 				setMovies(movieres.data);
 				setLists(listres.data);
-				console.log("Home.jsx: lists: ", listres.data);
-				console.log("Home.jsx: movies: ", movieres.data);
 				setFetching(false);
 			} catch (err) {
 				setFetching(false);

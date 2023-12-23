@@ -3,58 +3,58 @@ import "./watch.scss";
 import Loading from "../Loading/Loading";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function Watch(props) {
-	const [movie, setMovie] = useState("");
+export default function Watch() {
+	const [movie, setMovie] = useState(null);
 	const [fetching, setFetching] = useState(true);
-
 	const navigate = useNavigate();
+	const params = useParams();
 
 	useEffect(() => {
-		setMovie(props.movieId);
-	}, [props.movieId]);
+		if (params.movieId) {
+			fetchMovie(params.movieId);
+		}
+	}, [params.movieId]);
 
-	useEffect(() => {
-		const getMovie = async () => {
-			const baseURL = "http://localhost:8080/api";
-			try {
-				setFetching(true);
-				const res = await axios.get(baseURL + "/movies/find/" + movie, {
-					headers: {
-						authorization: localStorage.getItem("authorization"),
-					},
-				});
-				setMovie(res.data);
-				setFetching(false);
-			} catch (err) {
-				setFetching(false);
-				console.log(err);
-			}
-		};
-		getMovie();
-	}, [movie]);
+	const fetchMovie = async (movieId) => {
+		const baseURL = "http://localhost:8080/api";
+		try {
+			setFetching(true);
+			const res = await axios.get(baseURL + "/movies/find/" + movieId, {
+				headers: {
+					authorization: localStorage.getItem("authorization"),
+				},
+			});
+			setMovie(res.data);
+			setFetching(false);
+		} catch (err) {
+			console.log(err);
+			setFetching(false);
+		}
+	};
 
 	const handleClick = () => {
 		navigate("/");
 	};
 
-	if (fetching) {
-		return <Loading />;
-	}
-
-	return (
+	return fetching ? (
+		<Loading />
+	) : (
 		<div className="watch">
 			<div className="back" onClick={handleClick}>
 				<ArrowBackOutlined />
 				Home
 			</div>
-			<video
-				className="videoplayer"
-				autoPlay
-				controls
-				src={movie.video}
-			/>
+			{movie && (
+				<video
+					className="videoplayer"
+					autoPlay
+					controls
+					lazy
+					src={movie.video}
+				/>
+			)}
 		</div>
 	);
 }

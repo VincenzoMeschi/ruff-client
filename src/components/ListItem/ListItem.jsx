@@ -15,7 +15,7 @@ export default function ListItem({ index, listIndex, movieId, movies }) {
 	const [title, setTitle] = useState("Loading...");
 	const [desc, setDesc] = useState("Loading...");
 	const [img, setImg] = useState("Loading...");
-	const [video, setVideo] = useState("Loading...");
+	const [video, setVideo] = useState(null);
 	const [year, setYear] = useState("Loading...");
 	const [time, setTime] = useState("Loading...");
 
@@ -27,7 +27,6 @@ export default function ListItem({ index, listIndex, movieId, movies }) {
 			return movie._id === movieId;
 		});
 		setMovie(selectedmovie[0]);
-		console.log("ListItem.jsx: selectedmovie: ", selectedmovie[0]);
 	}, [movieId, movies]);
 
 	useEffect(() => {
