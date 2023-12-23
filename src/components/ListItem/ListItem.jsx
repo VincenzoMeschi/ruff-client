@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function ListItem({ index, listIndex, movieId, movies }) {
 	const [hoverTimeout, setHoverTimeout] = useState(null);
+	const [playTimeout, setPlayTimeout] = useState(null);
 	const [movie, setMovie] = useState(null);
 	const [title, setTitle] = useState("Loading...");
 	const [desc, setDesc] = useState("Loading...");
@@ -46,17 +47,25 @@ export default function ListItem({ index, listIndex, movieId, movies }) {
 		);
 		const timeout = setTimeout(() => {
 			listitem.classList.add("postHover");
-			videoRef.current.currentTime = 10;
-			videoRef.current.play();
-		}, 750);
+			const playTimeout = setTimeout(() => {
+				listitem.classList.add("postHoverPlay");
+				videoRef.current.currentTime = 10;
+				videoRef.current.play();
+			}, 1200);
+			setPlayTimeout(playTimeout);
+		}, 1000);
 		setHoverTimeout(timeout);
 	};
 
 	const handleMouseLeave = () => {
 		clearTimeout(hoverTimeout);
+		clearTimeout(playTimeout);
 		document
 			.getElementById(`listItem-${index}-${listIndex}`)
 			.classList.remove("postHover");
+		document
+			.getElementById(`listItem-${index}-${listIndex}`)
+			.classList.remove("postHoverPlay");
 		videoRef.current.pause();
 		videoRef.current.currentTime = 0;
 	};

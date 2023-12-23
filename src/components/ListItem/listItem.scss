@@ -63,12 +63,7 @@
 			}
 
 			img {
-				opacity: 0.5; /* Dimming the image */
-				height: 140px;
-			}
-
-			video {
-				opacity: 1; /* Show the video */
+				height: 200px;
 			}
 
 			.itemInfo {
@@ -116,6 +111,11 @@
 					font-size: 14px;
 					color: lightgray;
 				}
+			}
+		}
+		&.postHoverPlay {
+			video {
+				opacity: 1; /* Reveal the video */
 			}
 		}
 	}
