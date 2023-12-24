@@ -9,6 +9,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ListItem({ index, listIndex, movieId, movies }) {
+	const [isHovered, setIsHovered] = useState(false);
 	const [hoverTimeout, setHoverTimeout] = useState(null);
 	const [playTimeout, setPlayTimeout] = useState(null);
 	const [movie, setMovie] = useState(null);
@@ -41,6 +42,7 @@ export default function ListItem({ index, listIndex, movieId, movies }) {
 	}, [movie]);
 
 	const handleMouseEnter = () => {
+		setIsHovered(true);
 		const listitem = document.getElementById(
 			`listItem-${index}-${listIndex}`
 		);
@@ -57,6 +59,7 @@ export default function ListItem({ index, listIndex, movieId, movies }) {
 	};
 
 	const handleMouseLeave = () => {
+		setIsHovered(false);
 		clearTimeout(hoverTimeout);
 		clearTimeout(playTimeout);
 		document
@@ -91,10 +94,11 @@ export default function ListItem({ index, listIndex, movieId, movies }) {
 				<img src={img} alt="" />
 				<video
 					ref={videoRef}
-					src={video}
+					src={isHovered ? video : ""}
 					autoPlay={false}
 					onClick={handleVideoClick}
 					loop
+					preload="none"
 				/>
 				<div className="itemInfo">
 					<div className="icons">
