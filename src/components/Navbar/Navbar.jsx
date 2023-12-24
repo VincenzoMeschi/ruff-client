@@ -1,6 +1,6 @@
 import "./navbar.scss";
 import { useState, useEffect } from "react";
-import { authGetCurrentUserInfo } from "../../auth/auth";
+import { authGetCurrentUserInfo, authLogout } from "../../auth/auth";
 import Loading from "../../pages/Loading/Loading";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
@@ -71,7 +71,9 @@ const Navbar = () => {
 									</button>
 								</li>
 								<li>
-									<button className="logoutButtonNav">
+									<button
+										className="logoutButtonNav"
+										onClick={authLogout}>
 										<LogoutOutlinedIcon className="dropdownIcon" />
 										Logout
 									</button>

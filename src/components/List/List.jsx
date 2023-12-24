@@ -41,6 +41,7 @@ export default function List(props) {
 				<div className="containerArrow" ref={listRef}>
 					{props.list.content.map((item, index) => (
 						<ListItem
+							key={`index-${item}`}
 							index={index}
 							listIndex={props.listIndex}
 							movieId={item}

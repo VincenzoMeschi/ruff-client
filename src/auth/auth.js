@@ -21,7 +21,7 @@ export const authLogin = async (email, password) => {
 
 export const authLogout = () => {
 	window.localStorage.removeItem("authorization");
-	window.location.href = "/login";
+	window.location.reload();
 };
 
 export const authGetCurrentUserInfo = async () => {

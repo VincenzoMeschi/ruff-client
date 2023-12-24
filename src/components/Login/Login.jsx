@@ -28,6 +28,7 @@ const Login = (props) => {
 		const handleIncorrectLogin = (err) => {
 			setIncorrectLogin(true);
 			setCountAttemps(countAttempts + 1);
+			console.log(err);
 			setResMessage(err.response.data);
 		};
 
