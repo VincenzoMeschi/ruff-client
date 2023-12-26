@@ -95,7 +95,7 @@ const Login = (props) => {
 				</form>
 				<p>
 					New to Ruff?{" "}
-					<button onClick={handleRegister}>Register</button>
+					<button onClick={handleRegister}>Sign up now</button>
 				</p>
 			</div>
 		</div>
