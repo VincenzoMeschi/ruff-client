@@ -18,7 +18,7 @@ export default function Watch() {
 	}, [params.movieId]);
 
 	const fetchMovie = async (movieId) => {
-		const baseURL = "http://localhost:8080/api";
+		const baseURL = "https://api.rufftv.com/api";
 		try {
 			setFetching(true);
 			const res = await axios.get(baseURL + "/movies/find/" + movieId, {
