@@ -6,7 +6,7 @@ export const authLogin = async (email, password) => {
 		password: password,
 	};
 
-	const baseURL = "http://api.rufftv.com/api/auth/login";
+	const baseURL = "https://api.rufftv.com/api/auth/login";
 
 	const config = {
 		headers: {
@@ -26,7 +26,7 @@ export const authLogout = () => {
 
 export const authGetCurrentUserInfo = async () => {
 	try {
-		const response = await axios.get("http://api.rufftv.com/api/auth", {
+		const response = await axios.get("https://api.rufftv.com/api/auth", {
 			headers: {
 				authorization: window.localStorage.getItem("authorization"),
 			},
@@ -59,7 +59,7 @@ export const authRegister = async (email, password, username) => {
 		profilePic: img,
 	};
 
-	const baseURL = "http://api.rufftv.com/api/auth/register";
+	const baseURL = "https://api.rufftv.com/api/auth/register";
 
 	const config = {
 		headers: {

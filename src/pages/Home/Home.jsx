@@ -13,7 +13,7 @@ const Home = () => {
 
 	useEffect(() => {
 		const getLists = async () => {
-			const baseURL = "http://api.rufftv.com/api";
+			const baseURL = "https://api.rufftv.com/api";
 			try {
 				const listres = await axios.get(baseURL + "/lists", {
 					headers: {
