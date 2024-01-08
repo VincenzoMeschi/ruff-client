@@ -16,7 +16,7 @@ Ruff is a full-stack, on-demand video streaming application. This repository (`r
 ## Installation
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/ruff-client.git
+   git clone https://github.com/VincenzoMeschi/ruff-client.git
    ```
 2. Install dependencies
     ```bash
