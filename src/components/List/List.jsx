@@ -118,6 +118,17 @@ export default function List(props) {
         onClick={() => handleClick("left")}
         style={{ display: !isMoved && "none" }}
       />
+      <div className="containerArrow" ref={listRef}>
+        {props.list.content.map((item, index) => (
+          <ListItem
+            key={`index-${item}`}
+            index={index}
+            listIndex={props.listIndex}
+            movieId={item}
+            movies={props.movies}
+          />
+        ))}
+      </div>
       <ArrowForwardIosOutlined
         className="sliderArrow right"
         onClick={() => handleClick("right")}
